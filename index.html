@@ -13,12 +13,18 @@
   <style>
     /* Base Styles */
     :root {
-      --solar-primary: #FFC107;
-      --solar-secondary: #0056b3;
-      --solar-dark: #343a40;
-      --solar-light: #f8f9fa;
+      --solar-primary: #00D4AA;
+      --solar-secondary: #1E293B;
+      --solar-accent: #64748B;
+      --solar-warm: #94A3B8;
+      --solar-dark: #0F172A;
+      --solar-light: #F8FAFC;
       --solar-white: #ffffff;
       --solar-black: #000000;
+      --solar-gray: #64748B;
+      --solar-success: #10B981;
+      --solar-warning: #F59E0B;
+      --solar-gold: #FFD700;
     }
 
     * {
@@ -100,7 +106,7 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #FFC107, #FF6F00);
+      background: linear-gradient(135deg, #00D4AA, #94A3B8);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -163,29 +169,30 @@
 
     .get-quote-btn {
       background-color: var(--solar-primary);
-      color: #333;
-      padding: 8px 15px;
-      border-radius: 50px;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
       font-weight: 600;
       transition: all 0.3s ease;
       margin-left: 30px;
       display: flex;
       align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
     }
 
     .get-quote-btn i {
-      margin-right: 5px;
+      margin-right: 8px;
     }
 
     .get-quote-btn:hover {
-      background-color: #e0a800;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      background-color: var(--solar-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(100, 116, 139, 0.4);
     }
 
     /* Hero Section */
     #home {
-      background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
       color: white;
       min-height: 100vh;
       display: flex;
@@ -240,10 +247,11 @@
       display: inline-block;
       background-color: var(--solar-primary);
       color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 20px;
       margin-right: 10px;
       animation: pulse 2s infinite;
+      box-shadow: 0 4px 15px rgba(0, 212, 170, 0.4);
     }
 
     .hero-buttons {
@@ -254,20 +262,21 @@
 
     .btn-primary {
       background-color: var(--solar-primary);
-      color: #333;
-      padding: 12px 25px;
-      border-radius: 50px;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 25px;
       font-weight: 600;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
       display: inline-block;
+      box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
     }
 
     .btn-primary:hover {
-      background-color: #e0a800;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      background-color: var(--solar-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(100, 116, 139, 0.4);
     }
 
     .btn-outline {
@@ -584,7 +593,7 @@
 
     /* About Section */
     #about {
-      background: linear-gradient(135deg, #4338CA 0%, #38BDF8 50%, #6366F1 100%);
+      background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%);
       color: white;
       padding: 80px 0;
     }
@@ -638,7 +647,7 @@
 
     /* Services Section */
     #services {
-      background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 50%, #F97316 100%);
+      background: linear-gradient(135deg, #475569 0%, #64748B 50%, #94A3B8 100%);
       padding: 80px 0;
       color: white;
     }
@@ -651,23 +660,27 @@
     }
 
     .service-card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      color: #333;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      color: var(--solar-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
 
     .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 212, 170, 0.15);
+      border-color: var(--solar-primary);
     }
 
     .service-icon {
       color: var(--solar-primary);
       font-size: 2.5rem;
       margin-bottom: 20px;
+      text-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
     }
 
     .service-features {
@@ -682,14 +695,16 @@
 
     .feature-item i {
       color: var(--solar-primary);
-      margin-right: 10px;
+      margin-right: 12px;
+      font-size: 1.1rem;
+      text-shadow: 0 2px 8px rgba(0, 212, 170, 0.3);
     }
 
     /* Projects Section */
     #projects {
-      background-color: #f7f9fc;
+      background: linear-gradient(135deg, #94A3B8 0%, #CBD5E1 50%, #E2E8F0 100%);
       padding: 80px 0;
-      color: #333;
+      color: var(--solar-secondary);
     }
 
     .project-grid {
@@ -700,16 +715,19 @@
     }
 
     .project-card {
-      background-color: white;
-      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
 
     .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 212, 170, 0.15);
+      border-color: var(--solar-primary);
     }
 
     .project-image {
@@ -735,19 +753,21 @@
 
     .project-type {
       display: inline-block;
-      background-color: var(--solar-primary);
-      color: #333;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 0.8rem;
-      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--solar-primary), var(--solar-accent));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
     }
 
     /* Testimonials Section */
     #testimonials {
-      background: linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 100%);
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
       padding: 80px 0;
-      color: #333;
+      color: white;
     }
 
     .testimonial-grid {
@@ -758,16 +778,19 @@
     }
 
     .testimonial-card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
 
     .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 212, 170, 0.15);
+      border-color: var(--solar-primary);
     }
 
     .stars {
@@ -807,17 +830,20 @@
     }
 
     .stat-card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
 
     .stat-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 212, 170, 0.15);
+      border-color: var(--solar-primary);
     }
 
     .stat-number {
@@ -829,7 +855,7 @@
 
     /* Quote Section */
     #quote {
-      background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+      background: linear-gradient(135deg, #64748B 0%, #94A3B8 50%, #CBD5E1 100%);
       color: white;
       padding: 60px 0;
       text-align: center;
@@ -845,9 +871,9 @@
 
     /* Contact Section */
     #contact {
-      background: linear-gradient(135deg, #E5E7EB 0%, #F9FAFB 100%);
+      background: linear-gradient(135deg, #CBD5E1 0%, #E2E8F0 50%, #F1F5F9 100%);
       padding: 80px 0;
-      color: #333;
+      color: var(--solar-secondary);
       width: 100%;
       box-sizing: border-box;
     }
@@ -869,12 +895,14 @@
     }
 
     .contact-form {
-      background-color: white;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+      border-radius: 16px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       width: 100%;
       box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
 
     .form-group {
@@ -912,12 +940,14 @@
     }
 
     .contact-info {
-      background-color: white;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+      border-radius: 16px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       width: 100%;
       box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
 
     .contact-item {
@@ -928,15 +958,16 @@
 
     .contact-icon {
       background-color: var(--solar-primary);
-      color: #333;
-      width: 40px;
-      height: 40px;
+      color: white;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
+      border-radius: 12px;
       margin-right: 15px;
       flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
     }
 
     .contact-item h4 {
@@ -996,6 +1027,8 @@
     .footer-heading {
       margin-bottom: 15px;
       font-size: 1.2rem;
+      color: var(--solar-primary);
+      font-weight: 600;
     }
 
     .footer-text {
@@ -1052,16 +1085,16 @@
       position: fixed;
       bottom: 30px;
       right: 30px;
-      width: 40px;
-      height: 40px;
+      width: 55px;
+      height: 55px;
       background-color: var(--solar-primary);
-      color: #333;
-      border-radius: 50%;
+      color: white;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -1074,9 +1107,9 @@
     }
 
     .back-to-top:hover {
-      background-color: #e0a800;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background-color: var(--solar-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(100, 116, 139, 0.4);
     }
 
     /* Animations */
@@ -1289,7 +1322,7 @@
       </div>
     </div>
   </section>
-   <section id="why-solar" style="background: linear-gradient(135deg, #006B38 0%, #00A86B 100%); color: white; padding: 80px 0;">
+   <section id="why-solar" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%); color: white; padding: 80px 0;">
     <div class="container">
       <div class="text-center">
         <h2 class="section-heading" style="color: white;">Why Choose Solar Energy</h2>
@@ -1297,9 +1330,9 @@
       </div>
       
       <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
-        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <i class="fas fa-wallet" style="font-size: 30px; color: #333;"></i>
+        <div class="benefit-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 16px; padding: 35px; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 80px; height: 80px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);">
+            <i class="fas fa-wallet" style="font-size: 32px; color: white;"></i>
           </div>
           <h3>Financial Savings</h3>
           <p>Drastically reduce or eliminate your electricity bills. Most solar panel systems pay for themselves within 5-7 years, with returns on investment of 20% or more.</p>
@@ -1310,9 +1343,9 @@
           </ul>
         </div>
         
-        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <i class="fas fa-leaf" style="font-size: 30px; color: #333;"></i>
+        <div class="benefit-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 16px; padding: 35px; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 80px; height: 80px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);">
+            <i class="fas fa-leaf" style="font-size: 32px; color: white;"></i>
           </div>
           <h3>Environmental Impact</h3>
           <p>Solar energy is clean, renewable, and produces no harmful emissions. By switching to solar, you're reducing your carbon footprint and contributing to a healthier planet.</p>
@@ -1323,9 +1356,9 @@
           </ul>
         </div>
         
-        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <i class="fas fa-house-user" style="font-size: 30px; color: #333;"></i>
+        <div class="benefit-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 16px; padding: 35px; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 80px; height: 80px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);">
+            <i class="fas fa-house-user" style="font-size: 32px; color: white;"></i>
           </div>
           <h3>Increased Property Value</h3>
           <p>Homes equipped with solar energy systems have higher property values and sell faster than non-solar homes. Each kilowatt of solar power can add thousands to your home's resale value.</p>
@@ -1336,9 +1369,9 @@
           </ul>
         </div>
         
-        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-            <i class="fas fa-plug" style="font-size: 30px; color: #333;"></i>
+        <div class="benefit-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 16px; padding: 35px; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 80px; height: 80px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);">
+            <i class="fas fa-plug" style="font-size: 32px; color: white;"></i>
           </div>
           <h3>Energy Independence</h3>
           <p>Generate your own power and reduce reliance on the traditional power grid. Solar power systems often come with battery storage options, allowing you to maintain electricity even during outages.</p>
@@ -1428,7 +1461,7 @@
   </section>
 
   <!-- Team Section -->
-  <section id="team" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: white; padding: 80px 0;">
+  <section id="team" style="background: linear-gradient(135deg, #334155 0%, #475569 50%, #64748B 100%); color: white; padding: 80px 0;">
     <div class="container">
       <div class="text-center">
         <h2 class="section-heading" style="color: white;">Meet Our Founders</h2>
@@ -1436,8 +1469,8 @@
       </div>
       
       <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px;">
-        <div class="team-card fade-in" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);">
-          <div class="team-image" style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 4px solid var(--solar-primary);">
+        <div class="team-card fade-in" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 16px; padding: 35px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="team-image" style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 4px solid var(--solar-primary); box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="CEO" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <h3 style="color: white; margin-bottom: 10px;">John Smith</h3>
@@ -1456,8 +1489,8 @@
           </div>
         </div>
         
-        <div class="team-card fade-in" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);">
-          <div class="team-image" style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 4px solid var(--solar-primary);">
+        <div class="team-card fade-in" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 16px; padding: 35px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="team-image" style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 4px solid var(--solar-primary); box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);">
             <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face" alt="Co-founder" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <h3 style="color: white; margin-bottom: 10px;">Sarah Johnson</h3>
