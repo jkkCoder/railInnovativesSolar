@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RI-Solar - Sustainable Energy Solutions</title>
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Styles */
+    :root {
+      --solar-primary: #FFC107;
+      --solar-secondary: #0056b3;
+      --solar-dark: #343a40;
+      --solar-light: #f8f9fa;
+      --solar-white: #ffffff;
+      --solar-black: #000000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+      overscroll-behavior-y: none; /* Prevents bounce/rubber-band effect */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Removed scroll-behavior from body to handle it with JS instead for better performance */
+    html {
+      scroll-behavior: auto; /* Let JavaScript handle the scrolling */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .brand-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #FFC107, #FF6F00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 30px;
+    }
+
+    .nav-links a {
+      color: #333;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--solar-primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--solar-primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--solar-primary);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .get-quote-btn {
+      background-color: var(--solar-primary);
+      color: #333;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-left: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .get-quote-btn i {
+      margin-right: 5px;
+    }
+
+    .get-quote-btn:hover {
+      background-color: #e0a800;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hero Section */
+    #home {
+      background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      margin-top: 70px; /* Account for fixed navbar */
+      box-sizing: border-box;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 750px;
+      padding-right: 30px;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .hero-text p {
+      margin-bottom: 1.8rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 100%;
+    }
+
+    .hero-epc {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-epc span {
+      display: inline-block;
+      background-color: var(--solar-primary);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-right: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn-primary {
+      background-color: var(--solar-primary);
+      color: #333;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background-color: #e0a800;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline {
+      color: white;
+      border: 2px solid white;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background-color: white;
+      color: var(--solar-secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* FIXED: Optimized Solar Animation with proper z-index and positioning */
+    .solar-animation {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      perspective: 1200px;
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      z-index: 5;
+    }
+
+    /* FIXED: Improved Sun Animation with proper positioning and z-index */
+    .sun-container {
+      position: absolute;
+      top: 20%;  /* Adjusted for better positioning */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;  /* Increased z-index to appear above panel */
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+    }
+
+    .sun {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #fff886 0%, #ffc107 40%, #ff9800 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 0 60px 20px rgba(255, 193, 7, 0.7),
+        0 0 120px 40px rgba(255, 159, 0, 0.5);
+      animation: sun-pulse 4s infinite alternate ease-in-out;
+      position: relative;
+      transform: translateZ(0);  /* Hardware acceleration */
+      will-change: transform, box-shadow;
+    }
+
+    .sun-rays {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: 140px;
+      height: 140px;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 0 0 0 20px rgba(255, 193, 7, 0.3);
+      animation: sun-rays 8s infinite linear;
+      transform: translateZ(0);  /* Hardware acceleration */
+      will-change: transform, box-shadow;
+    }
+
+    /* FIXED: Improved solar panel animation */
+    .solar-panel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -10%) rotateX(60deg);
+      width: 280px;
+      height: 200px;
+      background: linear-gradient(135deg, #00264d, #004d99);
+      border: 8px solid rgba(0, 92, 185, 0.9);
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 5px;
+      padding: 8px;
+      animation: panel-tilt 12s infinite alternate ease-in-out;
+      z-index: 20;  /* Below sun but above other elements */
+      box-shadow: 
+        0 30px 60px rgba(0, 38, 77, 0.5),
+        0 0 30px rgba(0, 89, 178, 0.8),
+        inset 0 0 20px rgba(0, 140, 255, 0.4);
+      transform-style: preserve-3d;
+      will-change: transform, box-shadow;
+      backface-visibility: hidden;
+    }
+
+    /* FIXED: Improved solar cell styling and animations */
+    .solar-cell {
+      background: linear-gradient(135deg, #001a33, #003366);
+      box-shadow: 
+        inset 0 0 15px rgba(0, 60, 115, 0.8),
+        0 0 2px 1px rgba(0, 191, 255, 0.6);
+      border: 1px solid rgba(0, 140, 255, 0.8);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);  /* Hardware acceleration */
+      transition: all 0.3s ease;
+      will-change: transform, box-shadow;
+      backface-visibility: hidden;
+    }
+
+    .solar-cell::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(45deg, transparent 40%, rgba(0, 217, 255, 0.3) 50%, transparent 60%);
+      z-index: 2;
+      transform: translateZ(0);
+    }
+
+    .solar-cell::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 120%;
+      height: 100%;
+      background: linear-gradient(
+        90deg, 
+        rgba(0, 217, 255, 0) 0%,
+        rgba(0, 217, 255, 0.4) 50%,
+        rgba(0, 217, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: cell-shine 4s infinite ease-in-out;
+      will-change: transform, opacity;
+      filter: blur(0.5px);
+    }
+
+    .solar-cell:nth-child(2n)::after {
+      animation-delay: 0.5s;
+    }
+
+    .solar-cell:nth-child(3n)::after {
+      animation-delay: 1s;
+    }
+
+    .solar-cell:nth-child(4n)::after {
+      animation-delay: 1.5s;
+    }
+
+    .solar-cell:nth-child(5n)::after {
+      animation-delay: 2s;
+    }
+
+   
+    }
+
+    /* FIXED: Further optimized animations for better performance */
+    @keyframes sun-pulse {
+      0% {
+        transform: scale(1) translateZ(0);
+        box-shadow: 
+          0 0 40px 15px rgba(255, 193, 7, 0.7),
+          0 0 80px 30px rgba(255, 159, 0, 0.5);
+      }
+      50% {
+        transform: scale(1.05) translateZ(0);
+        box-shadow: 
+          0 0 50px 18px rgba(255, 193, 7, 0.8),
+          0 0 90px 35px rgba(255, 159, 0, 0.6);
+      }
+      100% {
+        transform: scale(1.1) translateZ(0);
+        box-shadow: 
+          0 0 60px 20px rgba(255, 193, 7, 0.9),
+          0 0 100px 40px rgba(255, 159, 0, 0.7);
+      }
+    }
+
+    @keyframes sun-rays {
+      0% {
+        transform: rotate(0deg) translateZ(0);
+        box-shadow: 0 0 0 20px rgba(255, 193, 7, 0.3);
+      }
+      25% {
+        box-shadow: 0 0 0 22px rgba(255, 193, 7, 0.25);
+      }
+      50% {
+        box-shadow: 0 0 0 25px rgba(255, 193, 7, 0.2);
+      }
+      75% {
+        box-shadow: 0 0 0 22px rgba(255, 193, 7, 0.25);
+      }
+      100% {
+        transform: rotate(360deg) translateZ(0);
+        box-shadow: 0 0 0 20px rgba(255, 193, 7, 0.3);
+      }
+    }
+
+    @keyframes panel-tilt {
+      0% {
+        transform: translate(-50%, -10%) rotateX(60deg) rotateY(-3deg) rotateZ(-1deg) translateZ(0);
+        box-shadow: 
+          0 30px 60px rgba(0, 38, 77, 0.5),
+          0 0 30px rgba(0, 89, 178, 0.8),
+          inset 0 0 20px rgba(0, 140, 255, 0.4);
+      }
+      25% {
+        transform: translate(-50%, -10%) rotateX(60deg) rotateY(-1.5deg) rotateZ(-0.5deg) translateZ(0);
+      }
+      50% {
+        transform: translate(-50%, -10%) rotateX(60deg) rotateY(0deg) rotateZ(0deg) translateZ(0);
+        box-shadow: 
+          0 35px 65px rgba(0, 38, 77, 0.55),
+          0 0 35px rgba(0, 102, 204, 0.85),
+          inset 0 0 25px rgba(0, 153, 255, 0.45);
+      }
+      75% {
+        transform: translate(-50%, -10%) rotateX(60deg) rotateY(1.5deg) rotateZ(0.5deg) translateZ(0);
+      }
+      100% {
+        transform: translate(-50%, -10%) rotateX(60deg) rotateY(3deg) rotateZ(1deg) translateZ(0);
+        box-shadow: 
+          0 30px 60px rgba(0, 38, 77, 0.5),
+          0 0 30px rgba(0, 89, 178, 0.8),
+          inset 0 0 20px rgba(0, 140, 255, 0.4);
+      }
+    }
+
+    @keyframes cell-shine {
+      0% {
+        left: -150%;
+        opacity: 0;
+      }
+      20% {
+        left: -100%;
+        opacity: 0.2;
+      }
+      35% {
+        left: -50%;
+        opacity: 1;
+      }
+      50% {
+        left: 0%;
+        opacity: 1;
+      }
+      65% {
+        left: 50%;
+        opacity: 1;
+      }
+      80% {
+        left: 100%;
+        opacity: 0.2;
+      }
+      100% {
+        left: 150%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes power-pulse {
+      0% {
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.7);
+        transform: scale(1) translateZ(0);
+      }
+      33% {
+        box-shadow: 0 0 30px rgba(0, 153, 255, 0.75);
+        transform: scale(1.03) translateZ(0);
+      }
+      66% {
+        box-shadow: 0 0 40px rgba(0, 173, 255, 0.8);
+        transform: scale(1.07) translateZ(0);
+      }
+      100% {
+        box-shadow: 0 0 50px rgba(0, 149, 255, 0.9);
+        transform: scale(1.1) translateZ(0);
+      }
+    }
+
+    @keyframes text-pulse {
+      0% {
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1) translateZ(0);
+      }
+      50% {
+        transform: scale(1.05) translateZ(0);
+      }
+      100% {
+        transform: scale(1) translateZ(0);
+      }
+    }
+
+    /* About Section */
+    #about {
+      background: linear-gradient(135deg, #4338CA 0%, #38BDF8 50%, #6366F1 100%);
+      color: white;
+      padding: 80px 0;
+    }
+
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .mission-values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .value-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .value-item i {
+      color: var(--solar-primary);
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+
+    /* Services Section */
+    #services {
+      background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 50%, #F97316 100%);
+      padding: 80px 0;
+      color: white;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #333;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-icon {
+      color: var(--solar-primary);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      margin-top: 15px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .feature-item i {
+      color: var(--solar-primary);
+      margin-right: 10px;
+    }
+
+    /* Projects Section */
+    #projects {
+      background-color: #f7f9fc;
+      padding: 80px 0;
+      color: #333;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+
+    .project-details {
+      padding: 20px;
+    }
+
+    .project-type {
+      display: inline-block;
+      background-color: var(--solar-primary);
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 100%);
+      padding: 80px 0;
+      color: #333;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .stars {
+      color: var(--solar-primary);
+      margin-bottom: 15px;
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .client-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .client-name {
+      font-weight: 600;
+    }
+
+    .client-position {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 60px;
+    }
+
+    .stat-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--solar-primary);
+      margin-bottom: 10px;
+    }
+
+    /* Quote Section */
+    #quote {
+      background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .quote-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(135deg, #E5E7EB 0%, #F9FAFB 100%);
+      padding: 80px 0;
+      color: #333;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    #contact .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .contact-form {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--solar-primary);
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-info {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      background-color: var(--solar-primary);
+      color: #333;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .contact-item h4 {
+      margin: 0 0 5px 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-item p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .map-responsive {
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+      border-radius: 10px;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .map-responsive iframe {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: none;
+      border-radius: 10px;
+    }
+    
+    /* Mobile responsiveness for contact section */
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-form, .contact-info {
+        padding: 20px;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a202c;
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-heading {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .footer-text {
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: white;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--solar-primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-links a {
+      color: white;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      opacity: 1;
+      color: var(--solar-primary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--solar-primary);
+      color: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: #e0a800;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Add hardware acceleration to animation elements */
+    .solar-animation,
+    .solar-panel,
+    .sun,
+    .sun-rays,
+    .power-circle,
+    .navbar,
+    .service-card,
+    .project-card,
+    .testimonial-card,
+    .stat-card,
+    .btn-primary,
+    .btn-outline,
+    .get-quote-btn {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+      will-change: transform;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 991px) {
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: white;
+        flex-direction: column;
+        padding: 40px 0;
+        transition: all 0.4s ease;
+        z-index: 999;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links li {
+        margin: 15px 0;
+      }
+
+      .get-quote-btn {
+        margin: 20px 0 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero-text {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .solar-animation {
+        height: 320px;
+      }
+
+      .sun {
+        width: 70px;
+        height: 70px;
+      }
+
+      .sun-rays {
+        width: 110px;
+        height: 110px;
+        top: -20px;
+        left: -20px;
+      }
+
+      .solar-panel {
+        width: 150px;
+        height: 100px;
+      }
+
+      .power-indicator {
+        bottom: 30px;
+      }
+
+      .power-circle {
+        width: 50px;
+        height: 50px;
+      }
+
+      .power-circle::before {
+        width: 40px;
+        height: 40px;
+      }
+
+      .power-circle::after {
+        width: 25px;
+        height: 25px;
+      }
+
+      .power-text {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="brand">
+        <img src="https://i.ibb.co/b8SwMk7/rilogoedit.png" alt="RI-Solar Logo">
+        <span class="brand-text">RI-Solar</span>
+      </a>
+      <div class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#why-solar">Why Solar</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="get-quote-btn">
+          <i class="fas fa-clipboard-list"></i>
+          Get Quote
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text fade-in">
+          <h1>Harness the Power of the Sun with <span style="color: var(--solar-primary);">RI-Solar</span></h1>
+          <p>RI-Solar (Rail Innovatives) delivers professional solar solutions for homes and businesses. 
+          Reduce your carbon footprint and save on energy costs with our cutting-edge solar technology.</p>
+          <div class="hero-epc">
+            <span>★</span>
+            <strong>We offer EPC Models</strong>
+          </div>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">Get a Free Quote</a>
+            <a href="#services" class="btn-outline">Our Services</a>
+          </div>
+        </div>
+        <div class="solar-animation fade-in">
+          <div class="sun-container">
+            <div class="sun"></div>
+            <div class="sun-rays"></div>
+          </div>
+          <div class="solar-panel">
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+            <div class="solar-cell"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <section id="why-solar" style="background: linear-gradient(135deg, #006B38 0%, #00A86B 100%); color: white; padding: 80px 0;">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading" style="color: white;">Why Choose Solar Energy</h2>
+        <p>Investing in solar power is more than just an energy choice—it's a smart decision for your future.</p>
+      </div>
+      
+      <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
+        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <i class="fas fa-wallet" style="font-size: 30px; color: #333;"></i>
+          </div>
+          <h3>Financial Savings</h3>
+          <p>Drastically reduce or eliminate your electricity bills. Most solar panel systems pay for themselves within 5-7 years, with returns on investment of 20% or more.</p>
+          <ul class="benefit-list" style="list-style: none; padding: 0; margin-top: 15px;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Lower monthly energy bills</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Protection from rising energy costs</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Government incentives and tax rebates</li>
+          </ul>
+        </div>
+        
+        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <i class="fas fa-leaf" style="font-size: 30px; color: #333;"></i>
+          </div>
+          <h3>Environmental Impact</h3>
+          <p>Solar energy is clean, renewable, and produces no harmful emissions. By switching to solar, you're reducing your carbon footprint and contributing to a healthier planet.</p>
+          <ul class="benefit-list" style="list-style: none; padding: 0; margin-top: 15px;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Zero carbon emissions</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Reduced dependence on fossil fuels</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Sustainable energy production</li>
+          </ul>
+        </div>
+        
+        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <i class="fas fa-house-user" style="font-size: 30px; color: #333;"></i>
+          </div>
+          <h3>Increased Property Value</h3>
+          <p>Homes equipped with solar energy systems have higher property values and sell faster than non-solar homes. Each kilowatt of solar power can add thousands to your home's resale value.</p>
+          <ul class="benefit-list" style="list-style: none; padding: 0; margin-top: 15px;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Higher resale value</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Attractive feature for potential buyers</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Modern and eco-friendly appeal</li>
+          </ul>
+        </div>
+        
+        <div class="benefit-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+          <div class="benefit-icon" style="background-color: var(--solar-primary); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <i class="fas fa-plug" style="font-size: 30px; color: #333;"></i>
+          </div>
+          <h3>Energy Independence</h3>
+          <p>Generate your own power and reduce reliance on the traditional power grid. Solar power systems often come with battery storage options, allowing you to maintain electricity even during outages.</p>
+          <ul class="benefit-list" style="list-style: none; padding: 0; margin-top: 15px;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Reduced reliance on utility companies</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Protection during power outages</li>
+            <li style="display: flex; align-items: center; margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--solar-primary); margin-right: 10px;"></i> Control over your energy production</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="text-center" style="margin-top: 50px;">
+        <a href="#contact" class="btn-primary">Get a Free Solar Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading" style="color: white;">About RI-Solar</h2>
+        <p>Learn about our mission, vision, and the team behind RI-Solar</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <h3 style="color: white;">Our Story</h3>
+          <p>Founded in 2010, RI-Solar began with a simple mission: to make clean, 
+          renewable energy accessible to everyone. What started as a small team 
+          of passionate solar enthusiasts has grown into a leading provider of 
+          solar solutions across the country.</p>
+          <p>Over the years, we've installed thousands of solar systems for homes 
+          and businesses, helping our clients reduce their carbon footprint while 
+          saving money on energy costs. Our commitment to quality, innovation, 
+          and customer satisfaction has established us as a trusted name in the 
+          solar industry.</p>
+          <p>Today, RI-Solar continues to lead the way in solar technology, offering 
+          cutting-edge solutions that harness the power of the sun efficiently 
+          and effectively.</p>
+        </div>
+        <div class="about-image fade-in">
+          <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b" alt="Solar Energy">
+        </div>
+      </div>
+
+      <div class="mission-values">
+        <div class="value-card fade-in">
+          <h3>Our Mission</h3>
+          <p>To accelerate the transition to sustainable energy by providing high-quality, 
+          affordable solar solutions to homes and businesses while delivering exceptional 
+          customer service.</p>
+          <div class="value-item">
+            <i class="fas fa-leaf"></i>
+            <p>Reduce carbon emissions through renewable energy</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-home"></i>
+            <p>Make solar accessible to every homeowner</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-lightbulb"></i>
+            <p>Educate communities about sustainable energy</p>
+          </div>
+        </div>
+
+        <div class="value-card fade-in">
+          <h3>Our Vision</h3>
+          <p>To be the leading provider of solar energy solutions, recognized for our 
+          innovation, quality, and customer service, and to contribute significantly 
+          to a cleaner, more sustainable world.</p>
+          <div class="value-item">
+            <i class="fas fa-globe-americas"></i>
+            <p>Create a world powered by renewable energy</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-industry"></i>
+            <p>Transform how businesses think about energy</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-hands-helping"></i>
+            <p>Build lasting partnerships in the communities we serve</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading" style="color: white;">Our Services</h2>
+        <p>Comprehensive solar energy solutions tailored to your needs</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Residential Solar</h3>
+          <p>Custom solar solutions for homeowners looking to reduce their energy bills and carbon footprint.</p>
+          <div class="service-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Rooftop and ground mount options</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Battery storage integration</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Smart monitoring systems</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Financing options available</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>Commercial Solar</h3>
+          <p>Large-scale solar solutions for businesses, reducing operational costs and improving sustainability.</p>
+          <div class="service-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Custom system design</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Carport and rooftop installations</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Power Purchase Agreements</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Tax incentive guidance</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3>OPEX Model Solar</h3>
+          <p>Our OPEX (Operating Expense) model allows businesses to adopt solar with no upfront capital investment.</p>
+          <div class="service-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Zero capital investment</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Predictable energy costs</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Maintenance included</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Flexible contract terms</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Maintenance & Monitoring</h3>
+          <p>Comprehensive maintenance solutions to ensure your solar system operates at peak efficiency.</p>
+          <div class="service-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Preventive maintenance</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>24/7 system monitoring</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Performance optimization</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Annual inspection & cleaning</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h3>Solar Consulting</h3>
+          <p>Expert guidance to help businesses and homeowners make informed decisions about solar energy.</p>
+          <div class="service-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Site assessment & feasibility</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Financial analysis & ROI</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Technology recommendations</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <p>Looking for OPEX Model Solar System</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading">Our Featured Projects</h2>
+        <p>Explore some of our recent solar installations across residential, commercial, and industrial sectors.</p>
+      </div>
+      
+      <div class="project-grid">
+        <div class="project-card fade-in">
+          <div class="project-image">
+           <img src="https://i.ibb.co/nsWPF0Q6/Roof-top.png" alt="Roof-top" border="0"></a>
+          </div>
+          <div class="project-details">
+            <span class="project-type">Residential</span>
+            <h3>Modern Home Solar Installation</h3>
+            <p>5.8 kW system with premium panels for a modern family home in the suburbs.</p>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7" alt="corporate-office">
+          </div>
+          <div class="project-details">
+            <span class="project-type">Commercial</span>
+            <h3>Office Building Rooftop Solar</h3>
+            <p>17 kW commercial installation providing clean energy for a office building in the city center.</p>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-image">
+         <img src="https://i.ibb.co/60PKqVWK/corporate-office.jpg" alt="corporate-office" border="0">
+          </div>
+          <div class="project-details">
+            <span class="project-type">Industrial</span>
+            <h3>Solar Park in Thoothukudi</h3>
+            <p>12.4 MW ground-mounted solar farm powering a large manufacturing facility and reducing operational costs by 35%.</p>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d" alt="Factory-Solar">
+          </div>
+          <div class="project-details">
+            <span class="project-type">Commercial</span>
+            <h3>RoofTop Solar for Factory</h3>
+            <p>2.2 MW commercial installation providing clean energy for a Manufacturing factory in Tenkasi.</p>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+           <img src="https://i.ibb.co/xVbsByq/Solar-Park.png" alt="Solar-Park" border="0">
+          </div>
+          <div class="project-details">
+            <span class="project-type">OPEX</span>
+            <h3>RoofTop Solar of Factory in OPEX model </h3>
+            <p>100 kW commercial installation providing clean energy for a multi-story Spinning Mill.</p>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+          <img src="https://i.ibb.co/qLb4v6dN/Screenshot-2025-04-30-162702.png" alt="Screenshot-2025-04-30-162702" border="0">
+          </div>
+          <div class="project-details">
+            <span class="project-type">OPEX</span>
+            <h3>OPEX Solar Farm</h3>
+            <p>15 MW solar installation with smart monitoring powering systems and power processing facilities for a large Companies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <div class="stat-number">00+</div>
+          <p>Installations Completed</p>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number">00MW+</div>
+          <p>Total Capacity Installed</p>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number">00%</div>
+          <p>Customer Satisfaction</p>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number">00+</div>
+          <p>Tons of CO₂ Offset Annually</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading">Client Testimonials</h2>
+        <p>Hear what our satisfied customers have to say about RI-Solar</p>
+      </div>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>"RI-Solar's team provided exceptional service from initial consultation to installation. Our home's energy bills have decreased significantly, and the system is performing even better than projected."</p>
+          <div class="client-info">
+            <div class="client-image">
+              <img src=".jpg" alt="Client">
+            </div>
+            <div>
+              <div class="client-name">Client 1</div>
+              <div class="client-position">Homeowner, Delhi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>"Our business was looking to reduce our carbon footprint while also cutting operational costs. RI-Solar provided the perfect solution with their commercial OPEX model. Professional, efficient, and highly recommended!"</p>
+          <div class="client-info">
+            <div class="client-image">
+              <img src=".jpg" alt="Client">
+            </div>
+            <div>
+              <div class="client-name">Client 2</div>
+              <div class="client-position">Business Owner, Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p>"The RI-Solar team made going solar simple and straightforward. They handled all the paperwork and permits, and the installation was completed in just two days. The monitoring app lets me see my energy production in real-time."</p>
+          <div class="client-info">
+            <div class="client-image">
+              <img src=".jpg" alt="Client">
+            </div>
+            <div>
+              <div class="client-name">Client 3</div>
+              <div class="client-position">Homeowner, Bangalore</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>"As a school administrator, I was impressed by how RI-Solar tailored their solution for our educational institution. The installation has not only reduced our costs but has become an educational tool for our students to learn about renewable energy."</p>
+          <div class="client-info">
+            <div class="client-image">
+              <img src=".jpg" alt="Client">
+            </div>
+            <div>
+              <div class="client-name">Client 4</div>
+              <div class="client-position">School Principal, Chennai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section id="quote">
+    <div class="container">
+      <h2>Ready to Start Your Solar Journey?</h2>
+      <p>Get a personalized quote for your home or business today.</p>
+      <div class="quote-buttons">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="tel:+919876543210" class="btn-outline">
+          <i class="fas fa-phone-alt"></i> (+91) 987-654-3210
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+   <section id="contact">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading">Contact Us</h2>
+        <p>Have questions about solar energy or ready to start your project? Get in touch with our team today.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-form fade-in">
+          <h3>Send Us a Message</h3>
+          <form id="contactForm" action="https://formsubmit.co/jayeshk118@gmail.com" method="POST">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" name="phone" id="phone" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select name="subject" id="subject" class="form-control">
+                <option value="Request a quote">Request a quote</option>
+                <option value="Technical support">Technical support</option>
+                <option value="General inquiry">General inquiry</option>
+                <option value="Careers">Careers</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Send Message</button>
+          </form>
+        </div>
+        
+        <div class="contact-info fade-in">
+          <h3>Contact Information</h3>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4>Our Office</h4>
+              <p>123 Solar Street, Green Park<br>New Delhi, 110016<br>India</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p>(+91) 987-654-3210</p>
+              <p>(+91) 123-456-7890</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>info@risolar.com</p>
+              <p>support@risolar.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h4>Business Hours</h4>
+              <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+              <p>Saturday: 10:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+          <div class="map-responsive">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4250.228434877353!2d80.20062821102033!3d13.104055487170386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52646c969fa9bd%3A0x8da8255df74a3a4a!2sKeeranur%20complex%2C%2035%2F1%2C%20Madras%20Thiruvallur%20High%20Rd%2C%20TNHB%20Colony%2C%20Villivakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600049!5e1!3m2!1sen!2sin!4v1746269293508!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 class="footer-heading">About RI-Solar</h4>
+          <p class="footer-text">RI-Solar is a leading provider of solar energy solutions dedicated to helping homes and businesses harness the power of the sun.</p>
+         
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Our Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Residential Solar</a></li>
+            <li><a href="#services">Commercial Solar</a></li>
+            <li><a href="#services">OPEX Model Solar</a></li>
+            <li><a href="#services">Maintenance & Monitoring</a></li>
+            <li><a href="#services">Solar Consulting</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#why-solar">Why Solar</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p class="footer-text">Subscribe to our newsletter to receive updates on the latest solar technologies and special offers.</p>
+          <form class="subscribe-form">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your Email Address" required>
+            </div>
+            <button type="submit" class="btn-primary" style="margin-top: 10px;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 RI-Solar. All Rights Reserved. | Designed by RI-Solar Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      hamburger.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        if (navMenu.classList.contains('active')) {
+          hamburger.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+
+      // Navigation Highlight on Scroll - With debounce for better performance
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      
+      // FIXED: Better scroll performance with debounce
+      function debounce(func, wait = 10, immediate = true) {
+        let timeout;
+        return function() {
+          const context = this, args = arguments;
+          const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          const callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      }
+      
+      // Cache DOM values that don't change frequently
+      const navbarHeight = 80;
+      const backToTopElement = document.querySelector('.back-to-top');
+      const navbarElement = document.querySelector('.navbar');
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const windowHeight = window.innerHeight;
+      
+      // Separated concerns for better performance
+      function updateBackToTop() {
+        if (window.scrollY > 300) {
+          backToTopElement.classList.add('active');
+        } else {
+          backToTopElement.classList.remove('active');
+        }
+      }
+      
+      function updateNavbarShadow() {
+        if (window.scrollY > 50) {
+          navbarElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+        } else {
+          navbarElement.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+      }
+      
+      function updateFadeElements() {
+        const elementVisible = 150;
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+          }
+        });
+      }
+      
+      function updateActiveNavLink() {
+        const scrollPos = window.scrollY + 100;
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            const sectionId = section.getAttribute('id');
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (sectionId === link.getAttribute('href').substring(1)) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+      
+      // FIXED: Better performance by separating scroll handler tasks
+      const debouncedScroll = debounce(function() {
+        updateActiveNavLink();
+        updateFadeElements();
+      }, 15);
+      
+      function onScroll() {
+        // High priority tasks run every frame (visual feedback)
+        updateBackToTop();
+        updateNavbarShadow();
+        
+        // Lower priority tasks that are debounced
+        debouncedScroll();
+      }
+      
+      // Optimized scroll event with requestAnimationFrame
+      let isScrolling = false;
+      window.addEventListener('scroll', function() {
+        if (!isScrolling) {
+          window.requestAnimationFrame(function() {
+            onScroll();
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      }, { passive: true }); // Add passive flag for better scroll performance
+      
+      // Call once on load to set initial state
+      onScroll();
+      
+      // FIXED: Better smooth scrolling implementation
+      const scrollLinks = document.querySelectorAll('a[href^="#"]');
+      
+      scrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            // FIXED: Better smooth scrolling that doesn't lag
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = targetPosition - navbarHeight;
+            
+            // Use smoothScroll function instead of browser's scrollTo for consistent behavior
+            smoothScroll(offsetPosition, 800); // 800ms duration
+            
+            // Close mobile menu if open
+            if (navMenu.classList.contains('active')) {
+              navMenu.classList.remove('active');
+              hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+          }
+        });
+      });
+      
+      // FIXED: Smooth scroll implementation with easing for better performance
+      function smoothScroll(destination, duration) {
+        const start = window.pageYOffset;
+        const distance = destination - start;
+        let startTime = null;
+        
+        function easeInOutCubic(t) {
+          return t < 0.5 
+            ? 4 * t * t * t 
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+        
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
+          const ease = easeInOutCubic(progress);
+          
+          window.scrollTo(0, start + distance * ease);
+          
+          if (timeElapsed < duration) {
+            window.requestAnimationFrame(animation);
+          }
+        }
+        
+        window.requestAnimationFrame(animation);
+      }
+      
+      // Back to Top Button Click - Using the same smooth scroll function
+      const backToTop = document.querySelector('.back-to-top');
+      backToTop.addEventListener('click', function() {
+        smoothScroll(0, 800); // Smooth scroll to top with 800ms duration
+      });
+      
+      // Contact Form Submission
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          // Don't prevent default to allow the form to submit to formsubmit.co
+          // e.preventDefault();
+          // Inline validation could be added here
+        });
+      }
+      
+      // Newsletter Subscription
+      const subscribeForm = document.querySelector('.subscribe-form');
+      if (subscribeForm) {
+        subscribeForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you for subscribing to our newsletter!');
+          subscribeForm.reset();
+        });
+      }
+      
+      // Fix for animation glitches in the solar panel
+      // Add animation observation using Intersection Observer API for better performance
+      if ('IntersectionObserver' in window) {
+        const heroSection = document.querySelector('#home');
+        const animatedElements = document.querySelectorAll('.solar-animation, .sun, .sun-rays, .solar-panel, .solar-cell');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // When the hero section is visible, ensure animations run smoothly
+              animatedElements.forEach(el => {
+                el.style.animationPlayState = 'running';
+                // Force GPU acceleration
+                el.style.transform = 'translateZ(0)';
+              });
+            } else {
+              // Pause animations when not in view to save resources
+              animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+              });
+            }
+          });
+        }, { 
+          threshold: 0.1,
+          rootMargin: '0px 0px 200px 0px' // Start observing before the element is visible
+        });
+        
+        observer.observe(heroSection);
+      }
+      
+      // FIXED: Prevent layout thrashing by batching DOM reads/writes
+      // This helps improve performance by minimizing browser repaints
+      const domActions = {
+        reads: [],
+        writes: [],
+        read: function(fn) {
+          this.reads.push(fn);
+          this.schedule();
+        },
+        write: function(fn) {
+          this.writes.push(fn);
+          this.schedule();
+        },
+        scheduled: false,
+        schedule: function() {
+          if (!this.scheduled) {
+            this.scheduled = true;
+            requestAnimationFrame(() => this.run());
+          }
+        },
+        run: function() {
+          // First do all the reads
+          const reads = this.reads;
+          const writes = this.writes;
+          
+          // Read
+          let i = reads.length;
+          while(i--) {
+            reads.shift()();
+          }
+          
+          // Then do all the writes
+          i = writes.length;
+          while(i--) {
+            writes.shift()();
+          }
+          
+          this.scheduled = false;
+          
+          // If there are still actions to perform, schedule another frame
+          if (this.reads.length || this.writes.length) {
+            this.schedule();
+          }
+        }
+      };
+    });
+  </script>
+</body>
+</html>
