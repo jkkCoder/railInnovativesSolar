@@ -174,6 +174,26 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
+    /* Shared: Header More Dropdown */
+    .nav-item-more { position: relative; }
+    .more-toggle { display: inline-flex; align-items: center; gap: 6px; }
+    .more-menu {
+      position: absolute; top: 100%; right: 0; background: #fff; border: 1px solid #eee;
+      border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); padding: 10px 0; min-width: 200px;
+      display: none; z-index: 1200;
+    }
+    .more-menu a { display: block; padding: 10px 16px; color: #333; white-space: nowrap; }
+    .more-menu a:hover { background: #f7f7f7; color: var(--solar-primary); }
+    .nav-item-more.open .more-menu { display: block; }
+    /* Desktop hover opens menu */
+    @media (min-width: 992px) { .nav-item-more:hover .more-menu { display: block; } }
+    @media (max-width: 991px) {
+      .nav-item-more { width: 100%; }
+      .more-toggle { display: none; }
+      .more-menu { position: relative; box-shadow: none; border: none; right: auto; display: block; padding: 0; }
+      .more-menu a { padding: 12px 0; }
+    }
+
     /* Main Content */
     .main-content {
       margin-top: 80px;
@@ -481,9 +501,9 @@
         width: 100%;
         height: calc(100vh - 70px);
         background-color: white;
-        flex-direction: column;
-        padding: 40px 0;
-        transition: all 0.4s ease;
+        display: block;
+        padding: 10px 0;
+        transition: all 0.3s ease;
         z-index: 999;
       }
 
@@ -491,14 +511,10 @@
         left: 0;
       }
 
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .nav-links li {
-        margin: 15px 0;
-      }
+      .nav-links { flex-direction: column; align-items: stretch; width: 100%; }
+      .nav-links li { margin: 0; width: 100%; }
+      .nav-links a { display: block; padding: 14px 20px; width: 100%; border-bottom: 1px solid #eee; text-align: left; }
+      .nav-item-more { display: none; }
 
       .get-quote-btn {
         margin: 20px 0 0;
@@ -550,13 +566,20 @@
       </a>
       <div class="nav-menu">
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#home">Home</a></li>
           <li><a href="index.html#services">Products</a></li>
           <li><a href="index.html#why-solar">Why Solar</a></li>
           <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#projects">Projects</a></li>
-          <li><a href="index.html#testimonials">Testimonials</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li class="nav-item-more">
+            <a href="#" class="more-toggle">More <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+            <div class="more-menu">
+              <a href="index.html#projects">Projects</a>
+              <a href="index.html#testimonials">Testimonials</a>
+              <a href="index.html#faq">FAQ</a>
+              <a href="calculator.html">Solar Calculator</a>
+              <a href="index.html#contact">Contact</a>
+            </div>
+          </li>
         </ul>
         <a href="calculator.html" class="get-quote-btn">
           <i class="fas fa-calculator"></i>
@@ -739,6 +762,25 @@
           hamburger.innerHTML = '<i class="fas fa-bars"></i>';
         }
       });
+
+      // Shared: More dropdown interactions
+      const moreItem = document.querySelector('.nav-item-more');
+      const moreToggle = document.querySelector('.more-toggle');
+      if (moreItem && moreToggle) {
+        moreToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          moreItem.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!moreItem.contains(e.target)) {
+            moreItem.classList.remove('open');
+          }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') moreItem.classList.remove('open');
+        });
+      }
 
       // Form submission
       const form = document.getElementById('solarCalculatorForm');

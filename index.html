@@ -1118,7 +1118,7 @@
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
-      transition: all 1s ease;
+      transition: all 0.5s ease;
     }
 
     .fade-in.active {
@@ -1146,6 +1146,62 @@
       will-change: transform;
     }
 
+    /* Header More Dropdown (Option B) */
+    .nav-item-more {
+      position: relative;
+    }
+    .more-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .more-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      padding: 10px 0;
+      min-width: 200px;
+      display: none;
+      z-index: 1200;
+    }
+    .more-menu a {
+      display: block;
+      padding: 10px 16px;
+      color: #333;
+      white-space: nowrap;
+    }
+    .more-menu a:hover {
+      background: #f7f7f7;
+      color: var(--solar-primary);
+    }
+    .nav-item-more.open .more-menu { display: block; }
+    /* Desktop hover opens menu */
+    @media (min-width: 992px) {
+      .nav-item-more:hover .more-menu { display: block; }
+    }
+
+    /* Mobile dropdown alignment */
+    @media (max-width: 991px) {
+      .nav-item-more { width: 100%; }
+      .more-toggle { display: none; }
+      .more-menu { position: relative; box-shadow: none; border: none; right: auto; display: block; padding: 0; }
+      .more-menu a { padding: 12px 0; }
+    }
+
+    /* FAQ Section */
+    #faq { padding: 80px 0; background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); color: #1E293B; }
+    .faq-container { max-width: 900px; margin: 0 auto; }
+    .faq-item { background: #fff; border-radius: 12px; border: 1px solid #eaeaea; margin-bottom: 14px; overflow: hidden; }
+    .faq-question { cursor: pointer; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+    .faq-question i { transition: transform 0.3s ease; color: var(--solar-primary); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 20px; }
+    .faq-item.open .faq-answer { padding: 12px 20px 18px; }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+
     /* Responsive Styles */
     @media (max-width: 991px) {
       .nav-menu {
@@ -1155,9 +1211,9 @@
         width: 100%;
         height: calc(100vh - 70px);
         background-color: white;
-        flex-direction: column;
-        padding: 40px 0;
-        transition: all 0.4s ease;
+        display: block;
+        padding: 10px 0;
+        transition: all 0.3s ease;
         z-index: 999;
       }
 
@@ -1165,14 +1221,10 @@
         left: 0;
       }
 
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .nav-links li {
-        margin: 15px 0;
-      }
+      .nav-links { flex-direction: column; align-items: stretch; width: 100%; }
+      .nav-links li { margin: 0; width: 100%; }
+      .nav-links a { display: block; padding: 14px 20px; width: 100%; border-bottom: 1px solid #eee; text-align: left; }
+      .nav-item-more { display: none; }
 
       .get-quote-btn {
         margin: 20px 0 0;
@@ -1265,9 +1317,15 @@
           <li><a href="#why-solar">Why Solar</a></li>
           <li><a href="#about">About</a></li>
             <!-- <li><a href="#team">Team</a></li> -->
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li class="nav-item-more">
+            <a href="#" class="more-toggle">More <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+            <div class="more-menu">
+              <a href="#projects">Projects</a>
+              <a href="#testimonials">Testimonials</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </li>
         </ul>
         <a href="calculator.html" class="get-quote-btn">
           <i class="fas fa-calculator"></i>
@@ -1298,8 +1356,7 @@
       <div class="hero-content">
         <div class="hero-text fade-in">
           <h1>Harness the Power of the Sun with <span style="color: var(--solar-primary);">RI-Solar</span></h1>
-          <p>RI-Solar (Rail Innovatives) delivers professional solar solutions for homes and businesses. 
-          Reduce your carbon footprint and save on energy costs with our cutting-edge solar technology.</p>
+          <p>Power your home with clean, reliable, and cost-effective solar energy. Reduce your electricity bills, stay energized during EB outages, and make a positive impact on the environment. With advanced solar technologies and easy government incentives, switching to solar has never been smarter—or simpler.</p>
           <div class="hero-epc">
             <span>★</span>
             <strong>We offer EPC Models</strong>
@@ -1574,18 +1631,9 @@
       <div class="about-grid">
         <div class="about-text fade-in">
           <h3 style="color: #1E293B;">Our Story</h3>
-          <p>Founded in 2010, RI-Solar began with a simple mission: to make clean, 
-          renewable energy accessible to everyone. What started as a small team 
-          of passionate solar enthusiasts has grown into a leading provider of 
-          solar solutions across the country.</p>
-          <p>Over the years, we've installed thousands of solar systems for homes 
-          and businesses, helping our clients reduce their carbon footprint while 
-          saving money on energy costs. Our commitment to quality, innovation, 
-          and customer satisfaction has established us as a trusted name in the 
-          solar industry.</p>
-          <p>Today, RI-Solar continues to lead the way in solar technology, offering 
-          cutting-edge solutions that harness the power of the sun efficiently 
-          and effectively.</p>
+          <p>RI Solar provides affordable, viable and scalable energy solutions. We are committed to driving sustainability through innovative solar solutions. We have a team of professionals committed to dedicated to crafting and implementing solar solutions that cater to the needs of individual households as well as industries and commercial sites.</p>
+          <br>
+          <p>Our robust post-sales support ensures that we resolve every issue posed by client in a smooth and timely manner. that Our mission aligns with India’s goal of decarbonization, self-reliant (Atma-nirbhar) in solar manufacturing and achieving Net Zero emissions before 2070.</p>
         </div>
         <div class="about-image fade-in">
           <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b" alt="Solar Energy">
@@ -1909,6 +1957,72 @@
     </div>
   </section>
 
+  <!-- FAQ Section (Top 5) placed below Contact Us -->
+  <section id="faq">
+    <div class="container faq-container">
+      <div class="text-center">
+        <h2 class="section-heading" style="color:#1E293B;">Frequently Asked Questions</h2>
+        <p class="fade-in">Answers to common questions about going solar</p>
+      </div>
+
+      <div class="faq-list" style="margin-top:30px;">
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>How much roof space do I need for solar panels?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>As a general rule, you need about 70 Sqft of shadow-free roof space per 1 kW of solar capacity. Our Solar Calculator can estimate this precisely for your usage.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>What is the typical ROI timeline for a solar system?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Most residential systems pay back in 4–6 years depending on local tariffs, consumption, and available subsidies. Commercial systems can be even faster.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>Do you provide maintenance and monitoring?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We offer comprehensive O&M plans including periodic cleaning, performance checks, and 24/7 monitoring options.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>What happens during a power outage?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Standard grid-tied systems shut down for safety. If you want backup power, we can integrate batteries or hybrid inverters to keep essential loads running.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>Do you help with subsidies and net metering?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely. Our team assists with all documentation, applications, and approvals for subsidies, net metering, and inspections.</p>
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-top: 20px;">
+          <a href="faq.html" class="btn-primary" style="display:inline-block; padding: 12px 22px; border-radius: 999px;">View All FAQs →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
    <section id="contact">
     <div class="container">
@@ -2080,6 +2194,25 @@
         }
       });
 
+      // More dropdown (click to toggle, close on outside click)
+      const moreItem = document.querySelector('.nav-item-more');
+      const moreToggle = document.querySelector('.more-toggle');
+      if (moreItem && moreToggle) {
+        moreToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          moreItem.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!moreItem.contains(e.target)) {
+            moreItem.classList.remove('open');
+          }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') moreItem.classList.remove('open');
+        });
+      }
+
       // Navigation Highlight on Scroll - With debounce for better performance
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.nav-links a');
@@ -2200,7 +2333,10 @@
             const offsetPosition = targetPosition - navbarHeight;
             
             // Use smoothScroll function instead of browser's scrollTo for consistent behavior
-            smoothScroll(offsetPosition, 800); // 800ms duration
+            smoothScroll(offsetPosition, 800, () => {
+              // After scrolling finishes, trigger fade-in check so section animates immediately
+              updateFadeElements();
+            }); // 800ms duration
             
             // Close mobile menu if open
             if (navMenu.classList.contains('active')) {
@@ -2212,7 +2348,7 @@
       });
       
       // FIXED: Smooth scroll implementation with easing for better performance
-      function smoothScroll(destination, duration) {
+      function smoothScroll(destination, duration, onDone) {
         const start = window.pageYOffset;
         const distance = destination - start;
         let startTime = null;
@@ -2233,6 +2369,8 @@
           
           if (timeElapsed < duration) {
             window.requestAnimationFrame(animation);
+          } else {
+            if (typeof onDone === 'function') onDone();
           }
         }
         
@@ -2294,6 +2432,45 @@
         
         observer.observe(heroSection);
       }
+
+      // FAQ Accordion (only one open at a time)
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item) => {
+        const header = item.querySelector('.faq-question');
+        header.addEventListener('click', () => {
+          // Close all others
+          faqItems.forEach((it) => {
+            if (it !== item) {
+              it.classList.remove('open');
+              const ans = it.querySelector('.faq-answer');
+              if (ans) ans.style.maxHeight = 0;
+            }
+          });
+          // Toggle current
+          item.classList.toggle('open');
+          const answer = item.querySelector('.faq-answer');
+          if (answer) {
+            if (item.classList.contains('open')) {
+              answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+              answer.style.maxHeight = 0;
+            }
+          }
+        });
+      });
+
+      // Trigger fade-in on load for sections in viewport (so clicking nav shows animation)
+      const fadeEls = document.querySelectorAll('.fade-in');
+      function applyInitialFadeIn() {
+        const vh = window.innerHeight;
+        fadeEls.forEach((el) => {
+          const top = el.getBoundingClientRect().top;
+          if (top < vh - 150) {
+            el.classList.add('active');
+          }
+        });
+      }
+      applyInitialFadeIn();
       
       // FIXED: Prevent layout thrashing by batching DOM reads/writes
       // This helps improve performance by minimizing browser repaints
