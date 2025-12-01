@@ -197,41 +197,6 @@
       box-sizing: border-box;
     }
 
-    /* Video Background */
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .video-background video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
-      z-index: 2;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-    }
-
-
-
     .hero-content {
       display: flex;
       align-items: center;
@@ -1195,12 +1160,62 @@
     /* FAQ Section */
     #faq { padding: 80px 0; background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); color: #1E293B; }
     .faq-container { max-width: 900px; margin: 0 auto; }
-    .faq-item { background: #fff; border-radius: 12px; border: 1px solid #eaeaea; margin-bottom: 14px; overflow: hidden; }
-    .faq-question { cursor: pointer; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-    .faq-question i { transition: transform 0.3s ease; color: var(--solar-primary); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 20px; }
-    .faq-item.open .faq-answer { padding: 12px 20px 18px; }
-    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #eaeaea;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-question {
+      cursor: pointer;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #1E293B;
+      margin: 0;
+    }
+
+    .faq-question i {
+      transition: transform 0.3s ease;
+      color: var(--solar-primary);
+      flex-shrink: 0;
+      margin-left: 15px;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 20px;
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      padding: 0 20px 24px 20px;
+    }
+
+    .faq-item.open .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer p {
+      margin: 0;
+      padding: 0;
+      color: #666;
+      display: block;
+      line-height: 1.6;
+    }
 
     /* Responsive Styles */
     @media (max-width: 991px) {
@@ -1242,6 +1257,20 @@
     }
 
     @media (max-width: 768px) {
+      .faq-question {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+      }
+
+      .faq-answer {
+        padding: 0 18px;
+        font-size: 0.9rem;
+      }
+
+      .faq-item.open .faq-answer {
+        padding: 0 18px 24px 18px;
+      }
+
       .solar-animation {
         height: 320px;
       }
@@ -1340,18 +1369,6 @@
 
   <!-- Hero Section -->
   <section id="home">
-    <!-- Video Background -->
-    <div class="video-background">
-      <video id="heroVideo" autoplay muted loop playsinline>
-        <source src="videos/video-1.mp4" type="video/mp4">
-        <!-- Fallback for browsers that don't support video -->
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    
-    <!-- Video Overlay -->
-    <div class="video-overlay"></div>
-    
     <div class="container">
       <div class="hero-content">
         <div class="hero-text fade-in">
@@ -2443,17 +2460,31 @@
             if (it !== item) {
               it.classList.remove('open');
               const ans = it.querySelector('.faq-answer');
-              if (ans) ans.style.maxHeight = 0;
+              if (ans) {
+                ans.style.maxHeight = '0';
+                ans.style.padding = '0 20px';
+              }
             }
           });
           // Toggle current
-          item.classList.toggle('open');
           const answer = item.querySelector('.faq-answer');
-          if (answer) {
-            if (item.classList.contains('open')) {
-              answer.style.maxHeight = answer.scrollHeight + 'px';
-            } else {
-              answer.style.maxHeight = 0;
+          if (item.classList.contains('open')) {
+            // Closing
+            item.classList.remove('open');
+            if (answer) {
+              answer.style.maxHeight = '0';
+              answer.style.padding = '0 20px';
+            }
+          } else {
+            // Opening
+            item.classList.add('open');
+            if (answer) {
+              // Force a reflow to get accurate scrollHeight
+              answer.style.display = 'block';
+              const scrollHeight = answer.scrollHeight;
+              // Set max-height to scrollHeight + extra padding for bottom visibility
+              answer.style.maxHeight = (scrollHeight + 30) + 'px';
+              answer.style.padding = '0 20px 24px 20px';
             }
           }
         });
@@ -2471,6 +2502,82 @@
         });
       }
       applyInitialFadeIn();
+
+      // Handle hash navigation from external pages (e.g., faq.html -> index.html#contact)
+      function handleHashNavigation() {
+        if (window.location.hash) {
+          const hash = window.location.hash.substring(1);
+          const targetElement = document.getElementById(hash);
+          
+          if (targetElement) {
+            // Wait for browser's default scroll to complete, then adjust and trigger animations
+            setTimeout(() => {
+              // Get current scroll position after browser's default scroll
+              const currentScroll = window.pageYOffset;
+              const targetPosition = targetElement.getBoundingClientRect().top + currentScroll;
+              const offsetPosition = targetPosition - navbarHeight;
+              
+              // If browser scrolled, adjust to account for navbar
+              if (Math.abs(currentScroll - offsetPosition) > 10) {
+                smoothScroll(offsetPosition, 300, () => {
+                  triggerFadeInForSection(targetElement);
+                });
+              } else {
+                // Browser already scrolled correctly, just trigger fade-in
+                triggerFadeInForSection(targetElement);
+              }
+            }, 100);
+          }
+        }
+      }
+
+      // Helper function to trigger fade-in for a section
+      function triggerFadeInForSection(sectionElement) {
+        // Trigger fade-in for all elements in viewport
+        updateFadeElements();
+        
+        // Specifically check for fade-in elements within the target section
+        const sectionFadeElements = sectionElement.querySelectorAll('.fade-in');
+        sectionFadeElements.forEach((el) => {
+          const elTop = el.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (elTop < windowHeight - 150) {
+            el.classList.add('active');
+          }
+        });
+        
+        // Also check the section itself if it has fade-in class
+        if (sectionElement.classList.contains('fade-in')) {
+          const sectionTop = sectionElement.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (sectionTop < windowHeight - 150) {
+            sectionElement.classList.add('active');
+          }
+        }
+      }
+
+      // Handle hash on page load (for external navigation)
+      if (window.location.hash) {
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', handleHashNavigation);
+        } else {
+          handleHashNavigation();
+        }
+      }
+
+      // Handle hash changes (when clicking links on the same page)
+      window.addEventListener('hashchange', function() {
+        const hash = window.location.hash.substring(1);
+        const targetElement = document.getElementById(hash);
+        if (targetElement) {
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = targetPosition - navbarHeight;
+          
+          smoothScroll(offsetPosition, 800, () => {
+            triggerFadeInForSection(targetElement);
+          });
+        }
+      });
       
       // FIXED: Prevent layout thrashing by batching DOM reads/writes
       // This helps improve performance by minimizing browser repaints
@@ -2518,33 +2625,6 @@
         }
       };
 
-      // Video Background - Single Video
-      const heroVideo = document.getElementById('heroVideo');
-
-      // Ensure video is always muted and playing
-      if (heroVideo) {
-        heroVideo.muted = true;
-        heroVideo.play();
-      }
-
-      // Pause video when not in viewport (for performance)
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (heroVideo) {
-              heroVideo.play();
-            }
-          } else {
-            if (heroVideo) {
-              heroVideo.pause();
-            }
-          }
-        });
-      }, { threshold: 0.5 });
-
-      if (heroVideo) {
-        observer.observe(heroVideo);
-      }
     });
   </script>
 </body>
